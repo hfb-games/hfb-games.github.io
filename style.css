@@ -160,8 +160,18 @@ tr:last-child td { border-bottom: 0; }
 .site-footer a { margin: 0 10px; color: var(--muted); text-decoration: none; font-weight: 600; }
 .site-footer a:hover { color: var(--accent); }
 
+/* min-width:0 lets grid children shrink below their content width; without it
+   the wide table pushed the whole page past the phone screen. */
+.doc-grid > * { min-width: 0; }
+.card { overflow-wrap: anywhere; }
+.card .table-wrap { overflow-wrap: normal; max-width: 100%; }
+body { overflow-x: hidden; }
+
 @media (max-width: 860px) {
-  .doc-grid { grid-template-columns: 1fr; }
+  .doc-grid { grid-template-columns: minmax(0, 1fr); }
+  .wrap { margin-top: -36px; }
+  th, td { padding: 9px 10px; font-size: 0.9rem; }
+  td a { overflow-wrap: anywhere; word-break: break-all; }
   .toc { display: none; }
   .card { padding: 6px 20px 24px; border-radius: 20px; }
   .hero { padding: 44px 16px 70px; }
