@@ -4,12 +4,12 @@
   --text: #1e1b3a;
   --muted: #62608a;
   --accent: #6c4cf5;
-  --accent2: #ff6fa8;
+  --accent2: #2bb6ff;
   --accent3: #19c3a6;
   --rule: rgba(108, 76, 245, 0.16);
   --shadow: 0 18px 50px rgba(76, 52, 180, 0.14);
-  --hero-from: #6c4cf5;
-  --hero-to: #ff6fa8;
+  --hero-from: #0a0620;
+  --hero-to: #4a1a9a;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -18,12 +18,12 @@
     --text: #ecebff;
     --muted: #a8a6d4;
     --accent: #a48cff;
-    --accent2: #ff8fbf;
+    --accent2: #5fd0ff;
     --accent3: #4fe0c4;
     --rule: rgba(164, 140, 255, 0.2);
     --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-    --hero-from: #4b2fd0;
-    --hero-to: #c93a7e;
+    --hero-from: #060414;
+    --hero-to: #3a1480;
   }
 }
 * { box-sizing: border-box; }
@@ -32,7 +32,7 @@ body {
   margin: 0;
   background:
     radial-gradient(900px 500px at 12% -5%, rgba(108, 76, 245, 0.18), transparent 60%),
-    radial-gradient(800px 500px at 100% 8%, rgba(255, 111, 168, 0.16), transparent 60%),
+    radial-gradient(800px 500px at 100% 8%, rgba(43, 182, 255, 0.16), transparent 60%),
     radial-gradient(700px 500px at 50% 100%, rgba(25, 195, 166, 0.12), transparent 60%),
     var(--bg);
   background-attachment: fixed;
@@ -59,10 +59,8 @@ a { color: var(--accent); text-underline-offset: 3px; }
   color: var(--text); text-decoration: none;
 }
 .logo {
-  width: 34px; height: 34px; border-radius: 11px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: grid; place-items: center; color: #fff; font-size: 0.95rem; font-weight: 800;
-  box-shadow: 0 6px 16px rgba(108, 76, 245, 0.35);
+  width: 40px; height: 40px; border-radius: 12px; object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(108, 76, 245, 0.35), 0 6px 18px rgba(80, 60, 255, 0.4);
 }
 .topbar nav a {
   margin-left: 6px; padding: 7px 14px; border-radius: 999px;
@@ -73,13 +71,16 @@ a { color: var(--accent); text-underline-offset: 3px; }
 /* hero */
 .hero {
   position: relative; overflow: hidden;
-  background: linear-gradient(135deg, var(--hero-from), var(--hero-to));
+  background:
+    radial-gradient(520px 380px at 8% 105%, rgba(0, 190, 255, 0.35), transparent 70%),
+    radial-gradient(560px 420px at 96% -10%, rgba(190, 70, 255, 0.40), transparent 70%),
+    linear-gradient(135deg, var(--hero-from), var(--hero-to));
   color: #fff;
   padding: 64px 16px 84px;
 }
 .hero::before, .hero::after {
-  content: ""; position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.35;
-  background: radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, 0));
+  content: ""; position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.25;
+  background: radial-gradient(circle at 30% 30%, rgba(160, 120, 255, 0.9), rgba(255, 255, 255, 0));
 }
 .hero::before { width: 380px; height: 380px; right: -90px; top: -120px; animation: float 9s ease-in-out infinite; }
 .hero::after { width: 240px; height: 240px; left: -60px; bottom: -110px; animation: float 11s ease-in-out infinite reverse; }
@@ -128,7 +129,7 @@ a { color: var(--accent); text-underline-offset: 3px; }
 .table-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid var(--rule); margin: 14px 0 22px; }
 table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
 th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--rule); }
-th { background: linear-gradient(135deg, rgba(108, 76, 245, 0.16), rgba(255, 111, 168, 0.16)); font-weight: 700; }
+th { background: linear-gradient(135deg, rgba(108, 76, 245, 0.16), rgba(43, 182, 255, 0.16)); font-weight: 700; }
 tr:last-child td { border-bottom: 0; }
 
 /* home page */
@@ -181,4 +182,15 @@ body { overflow-x: hidden; }
   .hero::before, .hero::after { animation: none; }
   html { scroll-behavior: auto; }
   .tile { transition: none; }
+}
+
+/* logo in the home hero */
+.hero-split { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.hero-logo {
+  width: 300px; height: 300px; border-radius: 28px; flex: none;
+  box-shadow: 0 0 60px rgba(0, 190, 255, 0.35), 0 0 90px rgba(190, 70, 255, 0.35);
+}
+@media (max-width: 860px) {
+  .hero-split { flex-direction: column-reverse; align-items: flex-start; gap: 22px; }
+  .hero-logo { width: 200px; height: 200px; }
 }
